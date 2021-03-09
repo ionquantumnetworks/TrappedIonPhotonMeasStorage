@@ -126,7 +126,10 @@ def simloop(timestr,i):
         #this is what the network thinks to be true. In the case of perfect storage we already determined if photons were both really there.
         if StoredA == True and StoredB == True:
             if PhotonA == 1 and PhotonB == 1:
-                entanglementCount += 1;
+                #adding in a random generator to account for 50% chance of entanglment.. shouldn't change anything fundamentally but will affect variation.
+                ent=random.randint(0, 1);
+                if ent:
+                    entanglementCount += 1;
             PhotonA = 0;
             PhotonB = 0;
             ReturnA = NCycles+1 #still  need to check if the +1 should be here
@@ -144,7 +147,7 @@ def simloop(timestr,i):
             ReturnB -= 1;
             
     stop=time.time()
-    entanglementRate = entanglementCount/totalTime/2
+    entanglementRate = entanglementCount/totalTime
     #ratelist.append(entanglementRate)
     fields = [L,entanglementRate,NodeARequestCounter,NodeBRequestCounter]
     with open("Storage_1500ns_"+timestr+".csv", 'a+') as f:   

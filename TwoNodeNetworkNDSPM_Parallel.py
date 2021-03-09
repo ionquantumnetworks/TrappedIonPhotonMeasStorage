@@ -114,7 +114,10 @@ def simloop(timestr,i):
         #this will have the disadvantage of not keeping track of when the photon makes it to the other side
         #which would matter for the storage and retrieval case.
         if PhotonA == 1 and PhotonB == 1:
-            entanglementCount += 1;
+            #adding in a random generator to account for 50% chance of entanglment.. shouldn't change anything fundamentally but will affect variation.
+            ent=random.randint(0, 1);
+            if ent:
+                entanglementCount += 1;
         PhotonA = 0;
         PhotonB = 0;
         if TranA > 0:
@@ -130,7 +133,7 @@ def simloop(timestr,i):
         if NDSPMDelayB > 0:
             NDSPMDelayB -= 1;
     stop=time.time()
-    entanglementRate = entanglementCount/totalTime/2
+    entanglementRate = entanglementCount/totalTime
     fields = [L,entanglementRate,NodeARequestCounter,NodeBRequestCounter,usefulA,usefulB]
     with open("NoStorage_NoDelay_1500nsClock"+timestr+".csv", 'a+') as f:   
         writer = csv.writer(f)
