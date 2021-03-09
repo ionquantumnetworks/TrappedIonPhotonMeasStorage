@@ -130,7 +130,7 @@ def simloop(timestr,i):
         if NDSPMDelayB > 0:
             NDSPMDelayB -= 1;
     stop=time.time()
-    entanglementRate = entanglementCount/totalTime
+    entanglementRate = entanglementCount/totalTime/2
     fields = [L,entanglementRate,NodeARequestCounter,NodeBRequestCounter,usefulA,usefulB]
     with open("NoStorage_NoDelay_1500nsClock"+timestr+".csv", 'a+') as f:   
         writer = csv.writer(f)

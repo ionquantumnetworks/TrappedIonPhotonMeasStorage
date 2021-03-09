@@ -144,7 +144,7 @@ def simloop(timestr,i):
             ReturnB -= 1;
             
     stop=time.time()
-    entanglementRate = entanglementCount/totalTime
+    entanglementRate = entanglementCount/totalTime/2
     #ratelist.append(entanglementRate)
     fields = [L,entanglementRate,NodeARequestCounter,NodeBRequestCounter]
     with open("Storage_1500ns_"+timestr+".csv", 'a+') as f:   
